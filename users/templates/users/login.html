@@ -1,15 +1,13 @@
 {% extends 'users/layout.html' %}
-
 {% block title %}
-Register
+Login
 {% endblock %}
-
 
 {% block body %}
 <div class="container outer">
     <div class="container inner">
 
-        <h3 class="reg"><b>SIGN UP</b></h3>
+        <h3 class="reg"><b>SIGN IN</b></h3>
         <form method="post">
             {% csrf_token %}
 
@@ -20,24 +18,11 @@ Register
                 {% endif %}
             </p>
 
-            <p class="form register">
-                Email: {{ form.email }}
-                {% if form.email.errors %}
-                <small class="text-danger">{{ form.email.errors.0 }}</small>
-                {% endif %}
-            </p>
 
             <p class="form register">
-                Password: {{ form.password1 }}
+                Password: {{ form.password }}
                 {% if form.password1.errors %}
                 <small class="text-danger">{{ form.password1.errors.0 }}</small>
-                {% endif %}
-            </p>
-
-            <p class="form register">
-                Confirm Password: {{ form.password2 }}
-                {% if form.password2.errors %}
-                <small class="text-danger">{{ form.password2.errors.0 }}</small>
                 {% endif %}
             </p>
 
@@ -47,11 +32,10 @@ Register
             </div>
             {% endif %}
 
-            <button type="submit" class="btn btn-primary w-100">Register</button>
-
+            <button type="submit" class="btn btn-primary w-100">Log In</button>
         </form>
 
-        <p class="redirect">Already have an account, then <a href="{% url 'users:login-view' %}">Login</a>
+        <p class="redirect">Don't have an account, then <a href="{% url 'users:register-view' %}">Register</a> </p>
     </div>
 </div>
 {% endblock %}
