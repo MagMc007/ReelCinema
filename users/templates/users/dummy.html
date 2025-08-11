@@ -9,4 +9,8 @@ Dummy
 {% block body %}
 
 <h1>This is the dummy page</h1>
+<form method="post" action="{% url 'users:logout-view' %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Logout</button>
+</form>
 {% endblock %}

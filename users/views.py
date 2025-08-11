@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from .forms import CustomUserCreationForm, CustomLoginForm
-from django.contrib.auth.views import LoginView
-
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class SignUpView(CreateView):
     form_class = CustomUserCreationForm
@@ -21,3 +21,9 @@ class SingInView(LoginView):
 
 def dummy(request):
     return render(request, "users/dummy.html")
+
+
+class SignOutView(LogoutView, LoginRequiredMixin):
+    """ log a user out and redirect to log in page """
+    next_page = "users:login-view"
+
