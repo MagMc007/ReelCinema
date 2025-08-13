@@ -13,4 +13,10 @@ Dummy
     {% csrf_token %}
     <button type="submit" class="btn btn-danger">Logout</button>
 </form>
+<hr>
+<form action="{% url 'users:change-view'%}" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-light">Change Credetial</button>
+</form>
+
 {% endblock %}

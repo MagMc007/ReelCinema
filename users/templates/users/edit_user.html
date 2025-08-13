@@ -1,0 +1,16 @@
+{% extends 'users/layout.html' %}
+{% block title %}
+Edit
+{% endblock %}
+
+{% block body %}
+<div class="container outer change">
+    <form action="{% url 'users:change-view' %}" class="form" method="post">
+        {% csrf_token %}
+        <p>Username: {{ form.username }} </p>
+        <p>Email: {{ form.email }}</p>
+        <button type="submit" class="btn btn-primary">Change</button>
+
+    </form>
+</div>
+{% endblock %}

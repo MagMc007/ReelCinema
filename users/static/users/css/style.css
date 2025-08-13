@@ -13,13 +13,14 @@
     justify-content: center;
 }
 
+
 .container.inner {
     background-color: black;
     width: 30vw;
     height: 60vh;
     border-radius: 10px;
-    border: 2px solid rgb(144, 196, 91);
-    box-shadow: 0 0 2px 2px greenyellow;
+    border: 0.5px solid rgb(13, 110, 253);
+    box-shadow: 0 0 1px 1px rgb(13, 110, 253);
 }
 
 .container.inner h3 {

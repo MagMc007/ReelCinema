@@ -1,6 +1,7 @@
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
 from django import forms
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -70,6 +71,38 @@ class CustomLoginForm(AuthenticationForm):
                 "placeholder": "Password",
             }
         )
-    
+
+
+class CustomUserChangeForm(UserChangeForm):
+
+    """ custom form for users to edit their credentials """
+    password = None
+
+    class Meta(UserChangeForm.Meta):
+        model = User
+        fields = ["username", "email"]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields["username"].widget.attrs.update(
+            {
+                "class": "form-control",
+                "placeholder": "Username"
+            }
+        )
+
+        self.fields["email"].widget.attrs.update(
+            {
+                "class": "form-control",
+                "placeholder": "Email"
+            }
+        )
+
+       
+
+
+
+
 
     
