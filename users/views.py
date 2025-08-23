@@ -3,15 +3,28 @@ from .serializers import RegisterSerializer, LoginSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class RegisterView(generics.CreateAPIView):
     """ provides view for registering """
-
+    queryset = User.objects.all()
     serializer_class = RegisterSerializer
 
-    def perform_create(self, serializer):
-        return serializer.save()
+    def create(self, request, *args, **kwargs):
+        response = super().create(request, *args, **kwargs)
+        username = response.data["username"]
+        user = User.objects.get(username=username)
+        token, created = Token.objects.get_or_create(user=user)
+        return Response({
+            "TOKEN": token.key,
+            "username": user.username,
+            "email": user.email,
+            "location": user.location,
+            "date_of_birth": user.date_of_birth,
+        }, status=status.HTTP_201_CREATED)
     
 
 class LoginView(APIView):
@@ -21,7 +34,7 @@ class LoginView(APIView):
     def post(self, request):
         serializer = LoginSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data['user']
+        user = serializer.validated_data
         token, created = Token.objects.get_or_create(user=user)
         return Response({
             "token": token.key,

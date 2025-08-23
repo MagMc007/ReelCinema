@@ -30,7 +30,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             "username",
             "email",
             "password",
-            "country",
+            "location",
             "date_of_birth",
         ]
 
@@ -42,11 +42,11 @@ class RegisterSerializer(serializers.ModelSerializer):
             password=validated_data["password"],
             email=validated_data["email"],
             date_of_birth=validated_data["date_of_birth"],
-            country=validated_data["country"],
+            location=validated_data["location"],
         )
 
         # create the token for the user
-        Token.objects.create(user=user)
+        Token.objects.get_or_create(user=user)
         return user
 
 
