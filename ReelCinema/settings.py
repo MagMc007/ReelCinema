@@ -33,6 +33,8 @@ AUTH_USER_MODEL = "users.User"
 # Application definition
 
 INSTALLED_APPS = [
+    "rest_framework.authtoken",
+    "rest_framework",
     "users",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -129,5 +131,10 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-# For loggin a user out
-LOGOUT_REDIRECT_URL = 'users:login-view'
+# rest_framwork configs for authentication
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",
+        ],
+}
