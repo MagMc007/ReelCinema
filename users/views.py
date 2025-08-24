@@ -28,7 +28,7 @@ class RegisterView(generics.CreateAPIView):
     
 
 class LoginView(APIView):
-    """ logs a user with credentials in """
+    """ logs in a user with credentials  """
 
     # implements post and use serializer for authentication checking
     def post(self, request):
@@ -37,7 +37,7 @@ class LoginView(APIView):
         user = serializer.validated_data
         token, created = Token.objects.get_or_create(user=user)
         return Response({
-            "token": token.key,
+            "TOKEN": token.key,
             "user_id": user.id,
             "username": user.username
             },
