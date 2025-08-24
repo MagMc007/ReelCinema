@@ -9,16 +9,22 @@ OMDB_KEY = "58c421c3"
 
 class MovieView(APIView):
     """ provides view for movies by title"""
-    def get(self, request, title):
+    def get(self, request):
+        # get the title
+        title = request.query_params.get("title")
+        if not title:
+            return Response(
+                {"Error":"Enter movie title"}, status=400
+            )
         # fetch the first movie from database using title
 
         movie = Movie.objects.filter(title__iexact=title).first()
         if movie:
             # serialize the movie data
 
-            movie = MovieSerializer(movie)
+            serializer = MovieSerializer(movie)
             return Response(
-                movie.data
+                serializer.data
             )
         
         # if not in db fetch from OMDB
