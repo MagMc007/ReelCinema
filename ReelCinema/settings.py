@@ -33,6 +33,7 @@ AUTH_USER_MODEL = "users.User"
 # Application definition
 
 INSTALLED_APPS = [
+    "review",
     "movies",
     "rest_framework.authtoken",
     "rest_framework",
