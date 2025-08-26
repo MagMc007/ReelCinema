@@ -34,7 +34,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             "date_of_birth",
         ]
 
-    # overide the user creation process you wat
+    # overide the user creation process 
 
     def create(self, validated_data):
         user = User.objects.create_user(
