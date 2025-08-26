@@ -1,20 +1,22 @@
 from rest_framework import serializers
 from .models import Review
 from users.serializers import UserSerializer
-from movies.serializers import MovieSerializer
+from movies.models import Movie
 
 
 class ReviewSerializer(serializers.ModelSerializer):
     """ serializes the movie and review data """
     user = UserSerializer(read_only=True)
-    movie = MovieSerializer(read_only=True)
+    movie_id = serializers.PrimaryKeyRelatedField(
+        queryset=Movie.objects.all(), write_only=True, source='movie'
+    )
 
     class Meta:
         model = Review
         fields = [
             "id",
             "user",
-            "movie",
+            "movie_id",
             "review_text",
             "rating",
             "created_at",

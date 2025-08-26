@@ -3,18 +3,21 @@ from .models import Movie
 from .serializers import MovieSerializer
 from rest_framework.views import APIView
 import requests
+from rest_framework.permissions import AllowAny
 
 OMDB_KEY = "58c421c3"
 
 
 class MovieView(APIView):
     """ provides view for movies by title"""
+    permission_classes = [AllowAny]
+
     def get(self, request):
         # get the title
         title = request.query_params.get("title")
         if not title:
             return Response(
-                {"Error":"Enter movie title"}, status=400
+                {"Error": "Enter movie title"}, status=400
             )
         # fetch the first movie from database using title
 
@@ -38,12 +41,14 @@ class MovieView(APIView):
             search_value = data["Search"][0]
 
             # create the movie in db first
-            movie = Movie.objects.create(
-                title=search_value["Title"],
-                year=search_value["Year"],
-                imdb_id=search_value["imdbID"],
-                type=search_value["Type"],
-                poster=search_value["Poster"]
+            movie, created = Movie.objects.get_or_create(
+                imdb_id = search_value["imdbID"],
+                defaults = {
+                    "title": search_value["Title"],
+                    "year": search_value["Year"],
+                    "type": search_value["Type"],
+                    "poster": search_value["Poster"]
+                    }
             )
             serialized_movie = MovieSerializer(movie)
             return Response(

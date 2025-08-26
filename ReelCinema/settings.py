@@ -33,7 +33,7 @@ AUTH_USER_MODEL = "users.User"
 # Application definition
 
 INSTALLED_APPS = [
-    "django_filter",
+    "django_filters",
     "review",
     "movies",
     "rest_framework.authtoken",

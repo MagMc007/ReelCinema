@@ -14,7 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
             "id",
             "username",
             "email",
-            "country",
+            "location",
             "date_of_birth",
         ]
 
@@ -61,4 +61,4 @@ class LoginSerializer(serializers.Serializer):
         user = authenticate(username=data["username"], password=data["password"])
         if user and user.is_active:
             return user
-        return serializers.ValidationError("Invalide credential")
+        raise serializers.ValidationError("Invalid credential")
