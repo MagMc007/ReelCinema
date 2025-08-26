@@ -2,6 +2,7 @@ from rest_framework import permissions
 from rest_framework.viewsets import ModelViewSet
 from .models import Review
 from .serializers import ReviewSerializer
+from rest_framework.pagination import PageNumberPagination
 
 
 class IsOwnerOrReadOnly(permissions.BasePermission):
@@ -19,6 +20,8 @@ class ReviewView(ModelViewSet):
     serializer_class = ReviewSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
     filterset_fields = ["movie"]
+    pagination_class = [PageNumberPagination]
+    ordering = ["-created_at"]
     
     def perform_create(self, serializer):
         # save the current review to the current user
