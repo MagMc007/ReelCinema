@@ -23,9 +23,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-u3i_4rn69)q8&1z)c*1fz^5*2*kgcsfskbs(*d*1=*=75&bt7b"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["movie-review-api.onrender.com", "127.0.0.1", "localhost"]
+# handle static files
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 
 # change the model for user
 AUTH_USER_MODEL = "users.User"
