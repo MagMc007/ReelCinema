@@ -86,14 +86,11 @@ WSGI_APPLICATION = "ReelCinema.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "movie_review_api",
-        "USER": "root",
-        "PASSWORD": "2025007diditb@d",
-        "HOST": "localhost",
-        "PORT": "3306",
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
 
 
 # Password validation
