@@ -53,7 +53,7 @@ Creates a new user account. Returns a token for authentication on success.
     "email": "merga@example.com",
     "password": "A...L....X",
     "location": "Ethiopia",
-    "date_of_birth": "1995-08-26"`
+    "date_of_birth": "1995-08-26"
 }
 ```
 Success Response (201 Created):
