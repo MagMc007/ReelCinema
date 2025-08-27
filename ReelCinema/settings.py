@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-u3i_4rn69)q8&1z)c*1fz^5*2*kgcsfskbs(*d*1=*=75&bt7b"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["reelcinema.onrender.com", "127.0.0.1", "localhost"]
 # handle static files
