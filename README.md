@@ -1,7 +1,10 @@
 # REEL CINEMA
 
 ReelCinema API is a fully functional RESTful backend service for a movie review platform. It allows users to register, log in, browse movies, and submit reviews while ensuring robust authentication, authorization, and data integrity.  
-
+### Check it live on:
+```json
+https://reelcinema.onrender.com/
+```
 ## Key Features
 ### A. User Management
 - Users can register and log in via token-based authentication.
