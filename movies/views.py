@@ -11,6 +11,7 @@ OMDB_KEY = "58c421c3"
 class MovieView(APIView):
     """ provides view for movies by title"""
     permission_classes = [AllowAny]
+    authentication_classes = []  
 
     def get(self, request):
         # get the title
