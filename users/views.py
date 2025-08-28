@@ -14,7 +14,6 @@ class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = RegisterSerializer
     permission_classes = [AllowAny]
-    authentication_classes = []  
 
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
@@ -33,7 +32,6 @@ class RegisterView(generics.CreateAPIView):
 class LoginView(APIView):
     """ logs in a user with credentials  """
     permission_classes = [AllowAny]
-    authentication_classes = []  
 
     # implements post and use serializer for authentication checking
     def post(self, request):
