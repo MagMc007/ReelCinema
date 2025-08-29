@@ -30,7 +30,7 @@ https://reelcinema.onrender.com/
 
 ### E. Tech Stack
 - Python 3.12, Django, Django REST Framework, Django-filter 
-- MySQL for storage  
+- MySQL for storage  (changed to sqlite for deployment purposes)
 - Requests library for external API calls (OMDb)  
 - Token-based authentication for secure access  
 
